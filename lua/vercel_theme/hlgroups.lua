@@ -206,7 +206,7 @@ function M.get(theme)
         -- Treesitter
         ['@attribute'] = { link = 'Identifier' },
         ['@constant.builtin'] = {
-            fg = theme.syntax.keyword.fg,
+            fg = theme.syntax.constant.builtin.fg,
             italic = theme.syntax.constant.italic.builtin,
         },
         ['@constructor'] = { link = 'Type' },
@@ -254,7 +254,7 @@ function M.get(theme)
             italic = theme.syntax.type.italic.definition,
         },
         ['@type.builtin'] = {
-            fg = theme.syntax.special.fg,
+            fg = theme.syntax.type.builtin.fg,
             italic = theme.syntax.type.italic.builtin,
         },
         ['@type.qualifier'] = { link = 'Keyword' },
@@ -346,16 +346,25 @@ function M.get(theme)
             bg = theme.nvim_tree.normal.bg,
             fg = theme.nvim_tree.normal.fg,
         },
-        ['NvimTreeWinSeparator'] = { bg = theme.bg, fg = theme.bg },
+        ['NvimTreeWinSeparator'] = {
+            bg = theme.nvim_tree.win_separator.bg,
+            fg = theme.nvim_tree.win_separator.fg,
+        },
         ['NvimTreeFolderIcon'] = { fg = theme.nvim_tree.folder.icon.fg },
         ['NvimTreeRootFolder'] = { fg = theme.nvim_tree.root_folder.fg },
         ['NvimTreeGitDeleted'] = { fg = theme.nvim_tree.git.deleted.fg },
+        ['NvimTreeGitDeletedIcon'] = { fg = theme.nvim_tree.git.deleted.fg },
         ['NvimTreeGitDirty'] = { fg = theme.nvim_tree.git.dirty.fg },
+        ['NvimTreeGitDirtyIcon'] = { fg = theme.nvim_tree.git.dirty.fg },
         ['NvimTreeGitIgnored'] = { fg = theme.nvim_tree.git.ignored.fg },
-        ['NvimTreeGitNew'] = { link = 'WarningMsg' },
+        ['NvimTreeGitIgnoredIcon'] = { fg = theme.nvim_tree.git.ignored.fg },
+        ['NvimTreeGitNew'] = { fg = theme.nvim_tree.git.new.fg },
+        ['NvimTreeGitNewIcon'] = { fg = theme.nvim_tree.git.new.fg },
         ['NvimTreeGitStaged'] = { fg = theme.nvim_tree.git.staged.fg },
+        ['NvimTreeGitStagedIcon'] = { fg = theme.nvim_tree.git.staged.fg },
         ['NvimTreeExecFile'] = { fg = theme.nvim_tree.exec_file.fg },
         ['NvimTreeIndentMarker'] = { link = 'Comment' },
+        ['NvimTreeModifiedIcon'] = { link = 'WarningMsg' },
 
         -- github.com/hrsh7th/nvim-cmp
         ['CmpItemAbbrDefault'] = { fg = theme.cmp_item.abbr.fg },

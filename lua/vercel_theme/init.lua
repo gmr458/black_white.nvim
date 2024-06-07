@@ -4,7 +4,29 @@ local M = {}
 M.config = {
     cursorline = vim.o.cursorline,
     transparent_background = false,
-    nvim_tree_lighter = false,
+    nvim_tree_darker = false,
+    undercurl = true,
+    italic_string = false,
+    italic_keyword = false,
+    italic_type = {
+        normal = false,
+        builtin = false,
+        definition = false,
+    },
+    italic_constant = {
+        builtin = false,
+    },
+    italic_function = {
+        declaration = false,
+        call = false,
+        method = {
+            declaration = false,
+            call = false,
+        },
+    },
+    custom_dark_background = nil,
+    custom_light_background = nil,
+    custom_statusline_dark_background = nil,
 }
 
 --- @overload fun(config?: Config)
