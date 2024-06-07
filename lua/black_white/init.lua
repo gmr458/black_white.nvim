@@ -43,14 +43,14 @@ function M.compile(theme, background)
 return string.dump(function()
 vim.o.termguicolors=true
 if vim.g.colors_name then vim.cmd "hi clear" end
-vim.g.colors_name="vercel_theme"
+vim.g.colors_name="black_white"
 vim.o.background="%s"
 local h=vim.api.nvim_set_hl]],
             background
         ),
     }
 
-    local hgs = require('vercel_theme.hlgroups').get(theme)
+    local hgs = require('black_white.hlgroups').get(theme)
     for group, color in pairs(hgs) do
         table.insert(
             lines,
@@ -63,19 +63,19 @@ local h=vim.api.nvim_set_hl]],
     end
     table.insert(lines, 'end,true)')
 
-    local vercel_theme_cache_dir = vim.fn.stdpath 'cache' .. '/vercel_theme/'
+    local theme_cache_dir = vim.fn.stdpath 'cache' .. '/black_white/'
 
-    if vim.fn.isdirectory(vercel_theme_cache_dir) == 0 then
-        vim.fn.mkdir(vercel_theme_cache_dir, 'p')
+    if vim.fn.isdirectory(theme_cache_dir) == 0 then
+        vim.fn.mkdir(theme_cache_dir, 'p')
     end
 
     local f = loadstring(table.concat(lines, '\n'))
     if not f then
         local path_debug_file = vim.fn.stdpath 'state'
-            .. '/vercel_theme-debug.lua'
+            .. '/black_white-debug.lua'
 
         local msg = string.format(
-            '[vercel_theme.nvim] error, open %s for debugging',
+            '[black_white.nvim] error, open %s for debugging',
             path_debug_file
         )
         vim.notify(msg, vim.log.levels.ERROR)
@@ -88,13 +88,13 @@ local h=vim.api.nvim_set_hl]],
         return
     end
 
-    local file = io.open(vercel_theme_cache_dir .. background, 'wb')
+    local file = io.open(theme_cache_dir .. background, 'wb')
     if file then
         file:write(f())
         file:close()
     else
         vim.notify(
-            '[vercel_theme.nvim] error trying to open cache file',
+            '[black_white.nvim] error trying to open cache file',
             vim.log.levels.ERROR
         )
     end
@@ -102,11 +102,11 @@ end
 
 --- @param background 'dark'|'light'
 local function compile_if_not_exist(background)
-    local compiled = vim.fn.stdpath 'cache' .. '/vercel_theme/' .. background
+    local compiled = vim.fn.stdpath 'cache' .. '/black_white/' .. background
     if vim.fn.filereadable(compiled) == 0 then
-        local palette = require('vercel_theme.palette.' .. background)
+        local palette = require('black_white.palette.' .. background)
         local theme =
-            require('vercel_theme.themes')[background](palette, M.config)
+            require('black_white.themes')[background](palette, M.config)
         M.compile(theme, background)
     end
 end
@@ -115,31 +115,31 @@ function M.load()
     compile_if_not_exist 'dark'
     compile_if_not_exist 'light'
 
-    local cache = vim.fn.stdpath 'cache' .. '/vercel_theme/' .. vim.o.background
+    local cache = vim.fn.stdpath 'cache' .. '/black_white/' .. vim.o.background
     local f = loadfile(cache)
     if f ~= nil then
         f()
     else
         vim.notify(
-            '[vercel_theme.nvim] error trying to load cache file',
+            '[black_white.nvim] error trying to load cache file',
             vim.log.levels.ERROR
         )
     end
 end
 
-vim.api.nvim_create_user_command('VercelThemeCompile', function()
-    local dark_palette = require 'vercel_theme.palette.dark'
+vim.api.nvim_create_user_command('BlackWhiteCompile', function()
+    local dark_palette = require 'black_white.palette.dark'
     local dark_theme =
-        require('vercel_theme.themes').dark(dark_palette, M.config)
+        require('black_white.themes').dark(dark_palette, M.config)
     M.compile(dark_theme, 'dark')
 
-    local light_palette = require 'vercel_theme.palette.light'
+    local light_palette = require 'black_white.palette.light'
     local light_theme =
-        require('vercel_theme.themes').light(light_palette, M.config)
+        require('black_white.themes').light(light_palette, M.config)
     M.compile(light_theme, 'light')
 
-    vim.notify('[vercel_theme.nvim] colorscheme compiled', vim.log.levels.INFO)
-    vim.cmd.colorscheme 'vercel_theme'
+    vim.notify('[black_white.nvim] colorscheme compiled', vim.log.levels.INFO)
+    vim.cmd.colorscheme 'black_white'
 end, {})
 
 return M
