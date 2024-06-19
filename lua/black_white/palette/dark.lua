@@ -1,7 +1,8 @@
 --- @class PaletteDark
 local palette = {
     bg_100 = '#0A0A0A',
-    bg_200 = '#000000',
+    bg_200 = '#0F0F0F',
+    bg_300 = '#000000',
 
     gray_100 = '#1A1A1A',
     gray_200 = '#1F1F1F',

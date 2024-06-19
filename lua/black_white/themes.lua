@@ -5,7 +5,7 @@ local themes = {
     --- @return ThemeDark
     dark = function(palette, config)
         local main = {
-            bg = palette.bg_200,
+            bg = palette.bg_300,
             fg = palette.gray_1000,
         }
 
@@ -36,7 +36,7 @@ local themes = {
                     line = {
                         bg = palette.gray_100,
                         nr = {
-                            bg = config.cursorline and palette.bg_100
+                            bg = config.cursorline and palette.gray_100
                                 or main.bg,
                             fg = main.fg,
                         },
@@ -50,16 +50,16 @@ local themes = {
                 },
                 diff = {
                     add = {
-                        bg = palette.green_900,
+                        bg = palette.green_300,
                     },
                     change = {
-                        bg = palette.amber_900,
+                        bg = palette.amber_300,
                     },
                     delete = {
-                        bg = palette.red_900,
+                        bg = palette.red_300,
                     },
                     text = {
-                        bg = palette.green_900,
+                        bg = palette.green_300,
                     },
                 },
                 folded = {
@@ -125,7 +125,7 @@ local themes = {
                     bg = palette.bg_100,
                     fg = palette.gray_900,
                     medium = {
-                        bg = palette.bg_100,
+                        bg = palette.bg_200,
                         fg = palette.gray_900,
                         git = {
                             added = {
@@ -141,7 +141,7 @@ local themes = {
                     },
                     mode = {
                         bg = palette.blue_900,
-                        fg = main.bg,
+                        fg = palette.bg_100,
                     },
                     lsp = {
                         active = {
@@ -260,19 +260,19 @@ local themes = {
                 added = {
                     fg = palette.green_900,
                     inline = {
-                        bg = palette.green_900,
+                        bg = palette.green_500,
                     },
                 },
                 changed = {
                     fg = palette.amber_900,
                     inline = {
-                        bg = palette.amber_900,
+                        bg = palette.amber_500,
                     },
                 },
                 removed = {
                     fg = palette.red_900,
                     inline = {
-                        bg = palette.red_900,
+                        bg = palette.red_500,
                     },
                 },
             },
@@ -455,16 +455,16 @@ local themes = {
                 },
                 diff = {
                     add = {
-                        bg = palette.green_900,
+                        bg = palette.green_300,
                     },
                     change = {
-                        bg = palette.amber_900,
+                        bg = palette.amber_300,
                     },
                     delete = {
-                        bg = palette.red_900,
+                        bg = palette.red_300,
                     },
                     text = {
-                        bg = palette.green_900,
+                        bg = palette.green_300,
                     },
                 },
                 folded = {
@@ -492,7 +492,7 @@ local themes = {
                     bg = main.bg,
                     border = {
                         bg = main.bg,
-                        fg = palette.bg_200,
+                        fg = palette.gray_600,
                     },
                 },
                 pmenu = {
@@ -546,7 +546,7 @@ local themes = {
                     },
                     mode = {
                         bg = palette.blue_900,
-                        fg = main.bg,
+                        fg = palette.gray_500,
                     },
                     lsp = {
                         active = {
@@ -664,19 +664,19 @@ local themes = {
                 added = {
                     fg = palette.green_800,
                     inline = {
-                        bg = palette.green_400,
+                        bg = palette.green_500,
                     },
                 },
                 changed = {
                     fg = palette.amber_800,
                     inline = {
-                        bg = palette.amber_400,
+                        bg = palette.amber_500,
                     },
                 },
                 removed = {
                     fg = palette.red_800,
                     inline = {
-                        bg = palette.amber_400,
+                        bg = palette.red_500,
                     },
                 },
             },
