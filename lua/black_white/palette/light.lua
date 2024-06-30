@@ -2,6 +2,7 @@
 local palette = {
     bg_100 = '#FFFFFF',
     bg_200 = '#FAFAFA',
+    bg_300 = '#D9D9D9',
 
     gray_100 = '#F2F2F2',
     gray_200 = '#EBEBEB',

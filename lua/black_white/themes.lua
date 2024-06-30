@@ -401,6 +401,11 @@ local themes = {
                     fg = palette.gray_900,
                 },
             },
+            mini = {
+                indentscope = {
+                    fg = palette.gray_400,
+                },
+            },
         }
 
         return theme
@@ -482,7 +487,7 @@ local themes = {
                         fg = palette.green_900,
                     },
                     warning = {
-                        fg = palette.amber_900,
+                        fg = palette.amber_700,
                     },
                 },
                 non_text = {
@@ -530,7 +535,7 @@ local themes = {
                     bg = palette.gray_500,
                     fg = palette.gray_1000,
                     medium = {
-                        bg = palette.gray_500,
+                        bg = palette.bg_300,
                         fg = palette.gray_1000,
                         git = {
                             added = {
@@ -696,13 +701,16 @@ local themes = {
             lsp = {
                 reference = {
                     text = {
-                        bg = palette.blue_300,
+                        -- bg = palette.blue_300,
+                        bg = palette.bg_300,
                     },
                     read = {
-                        bg = palette.blue_300,
+                        -- bg = palette.blue_300,
+                        bg = palette.bg_300,
                     },
                     write = {
-                        bg = palette.blue_300,
+                        -- bg = palette.blue_300,
+                        bg = palette.bg_300,
                     },
                 },
             },
@@ -801,6 +809,11 @@ local themes = {
                 footer = {
                     bg = palette.gray_300,
                     fg = palette.gray_900,
+                },
+            },
+            mini = {
+                indentscope = {
+                    fg = palette.gray_800,
                 },
             },
         }

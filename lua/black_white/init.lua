@@ -34,24 +34,20 @@ function M.setup(config)
     M.config = vim.tbl_deep_extend('force', M.config, config or {})
 end
 
---- @param theme ThemeDark | ThemeLight
---- @param background 'dark' | 'light'
-function M.compile(theme, background)
+--- @param theme_dark ThemeDark
+--- @param theme_light ThemeLight
+function M.compile(theme_dark, theme_light)
     local lines = {
-        string.format(
-            [[
-return string.dump(function()
-vim.o.termguicolors=true
-if vim.g.colors_name then vim.cmd "hi clear" end
+        string.format [[return string.dump(function()
+vim.cmd.highlight('clear')
 vim.g.colors_name="black_white"
-vim.o.background="%s"
-local h=vim.api.nvim_set_hl]],
-            background
-        ),
+local h=vim.api.nvim_set_hl
+vim.o.termguicolors=true]],
     }
 
-    local hgs = require('black_white.hlgroups').get(theme)
-    for group, color in pairs(hgs) do
+    table.insert(lines, 'if vim.o.background == \'dark\' then')
+    local hgs_dark = require('black_white.hlgroups').get(theme_dark)
+    for group, color in pairs(hgs_dark) do
         table.insert(
             lines,
             string.format(
@@ -61,6 +57,22 @@ local h=vim.api.nvim_set_hl]],
             )
         )
     end
+
+    table.insert(lines, 'else')
+
+    local hgs_light = require('black_white.hlgroups').get(theme_light)
+    for group, color in pairs(hgs_light) do
+        table.insert(
+            lines,
+            string.format(
+                [[h(0,"%s",%s)]],
+                group,
+                vim.inspect(color, { newline = '', indent = '' })
+            )
+        )
+    end
+    table.insert(lines, 'end')
+
     table.insert(lines, 'end,true)')
 
     local theme_cache_dir = vim.fn.stdpath 'cache' .. '/black_white/'
@@ -88,7 +100,7 @@ local h=vim.api.nvim_set_hl]],
         return
     end
 
-    local file = io.open(theme_cache_dir .. background, 'wb')
+    local file = io.open(theme_cache_dir .. '/cache', 'wb')
     if file then
         file:write(f())
         file:close()
@@ -100,22 +112,25 @@ local h=vim.api.nvim_set_hl]],
     end
 end
 
---- @param background 'dark'|'light'
-local function compile_if_not_exist(background)
-    local compiled = vim.fn.stdpath 'cache' .. '/black_white/' .. background
+local function compile_if_not_exist()
+    local compiled = vim.fn.stdpath 'cache' .. '/black_white/cache'
     if vim.fn.filereadable(compiled) == 0 then
-        local palette = require('black_white.palette.' .. background)
-        local theme =
-            require('black_white.themes')[background](palette, M.config)
-        M.compile(theme, background)
+        local palette_dark = require 'black_white.palette.dark'
+        local theme_dark =
+            require('black_white.themes').dark(palette_dark, M.config)
+
+        local palette_light = require 'black_white.palette.light'
+        local theme_light =
+            require('black_white.themes').light(palette_light, M.config)
+
+        M.compile(theme_dark, theme_light)
     end
 end
 
 function M.load()
-    compile_if_not_exist 'dark'
-    compile_if_not_exist 'light'
+    compile_if_not_exist()
 
-    local cache = vim.fn.stdpath 'cache' .. '/black_white/' .. vim.o.background
+    local cache = vim.fn.stdpath 'cache' .. '/black_white/cache'
     local f = loadfile(cache)
     if f ~= nil then
         f()
@@ -128,15 +143,15 @@ function M.load()
 end
 
 vim.api.nvim_create_user_command('BlackWhiteCompile', function()
-    local dark_palette = require 'black_white.palette.dark'
-    local dark_theme =
-        require('black_white.themes').dark(dark_palette, M.config)
-    M.compile(dark_theme, 'dark')
+    local palette_dark = require 'black_white.palette.dark'
+    local theme_dark =
+        require('black_white.themes').dark(palette_dark, M.config)
 
-    local light_palette = require 'black_white.palette.light'
-    local light_theme =
-        require('black_white.themes').light(light_palette, M.config)
-    M.compile(light_theme, 'light')
+    local palette_light = require 'black_white.palette.light'
+    local theme_light =
+        require('black_white.themes').light(palette_light, M.config)
+
+    M.compile(theme_dark, theme_light)
 
     vim.notify('[black_white.nvim] colorscheme compiled', vim.log.levels.INFO)
     vim.cmd.colorscheme 'black_white'
