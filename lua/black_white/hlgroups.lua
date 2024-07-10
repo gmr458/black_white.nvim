@@ -275,7 +275,10 @@ function M.get(theme)
         ['LspCodeLens'] = { link = 'Comment' },
         ['LspCodeLensSeparator'] = { link = 'Comment' },
         -- ['LspSignatureActiveParameter'] = {},
-        ['LspInlayHint'] = { link = 'Comment' },
+        ['LspInlayHint'] = {
+            bg = theme.lsp.inlay_hint.bg,
+            fg = theme.lsp.inlay_hint.fg,
+        },
 
         -- LSP Semantic tokens
         -- ['@lsp.mod.async'] = { link = 'Function' },

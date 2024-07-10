@@ -34,7 +34,8 @@ local themes = {
                         bg = palette.bg_100,
                     },
                     line = {
-                        bg = palette.gray_100,
+                        bg = config.cursorline and palette.gray_100
+                            or palette.none,
                         nr = {
                             bg = config.cursorline and palette.gray_100
                                 or main.bg,
@@ -67,7 +68,7 @@ local themes = {
                 },
                 line_nr = {
                     bg = main.bg,
-                    fg = palette.gray_900,
+                    fg = palette.gray_500,
                 },
                 msg = {
                     error = {
@@ -301,6 +302,10 @@ local themes = {
                         bg = palette.gray_300,
                     },
                 },
+                inlay_hint = {
+                    bg = palette.bg_100,
+                    fg = palette.gray_600,
+                },
             },
             diagnostic = {
                 error = {
@@ -444,7 +449,8 @@ local themes = {
                         bg = palette.bg_200,
                     },
                     line = {
-                        bg = palette.gray_200,
+                        bg = config.cursorline and palette.gray_200
+                            or palette.none,
                         nr = {
                             bg = config.cursorline and palette.gray_200
                                 or main.bg,
@@ -712,6 +718,10 @@ local themes = {
                         -- bg = palette.blue_300,
                         bg = palette.bg_300,
                     },
+                },
+                inlay_hint = {
+                    bg = palette.gray_400,
+                    fg = palette.gray_1000,
                 },
             },
             diagnostic = {
