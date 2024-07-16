@@ -5,6 +5,7 @@ M.config = {
     cursorline = vim.o.cursorline,
     transparent_background = false,
     nvim_tree_darker = false,
+    treesitter_context_underline = false,
     undercurl = true,
     italic_string = false,
     italic_keyword = false,

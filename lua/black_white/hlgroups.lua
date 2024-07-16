@@ -263,6 +263,10 @@ function M.get(theme)
 
         -- Treesitter Context
         ['TreesitterContext'] = { bg = theme.treesitter.context.bg },
+        ['TreesitterContextBottom'] = {
+            underline = theme.treesitter.context.bottom.underline,
+            sp = theme.treesitter.context.bottom.sp,
+        },
         ['TreesitterContextLineNumber'] = { bg = theme.treesitter.context.bg },
 
         -- LSP

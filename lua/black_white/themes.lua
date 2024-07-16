@@ -284,9 +284,16 @@ local themes = {
                     },
                 },
                 context = {
-                    bg = palette.gray_400,
+                    bg = config.treesitter_context_underline and palette.none
+                        or palette.gray_400,
                     line_number = {
-                        bg = palette.gray_400,
+                        bg = config.treesitter_context_underline
+                                and palette.none
+                            or palette.gray_400,
+                    },
+                    bottom = {
+                        underline = config.treesitter_context_underline,
+                        sp = palette.gray_400,
                     },
                 },
             },
@@ -698,9 +705,16 @@ local themes = {
                     },
                 },
                 context = {
-                    bg = palette.gray_100,
+                    bg = config.treesitter_context_underline and palette.none
+                        or palette.gray_100,
                     line_number = {
-                        bg = palette.gray_100,
+                        bg = config.treesitter_context_underline
+                                and palette.none
+                            or palette.gray_100,
+                    },
+                    bottom = {
+                        underline = config.treesitter_context_underline,
+                        sp = palette.gray_100,
                     },
                 },
             },
