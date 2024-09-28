@@ -1,4 +1,4 @@
---- @class PaletteLight
+--- @class BWPaletteLight
 local palette = {
     bg_100 = '#FFFFFF',
     bg_200 = '#FAFAFA',

@@ -1,8 +1,8 @@
---- @class Themes
+--- @class BWThemes
 local themes = {
-    --- @param palette PaletteDark
-    --- @param config Config
-    --- @return ThemeDark
+    --- @param palette BWPaletteDark
+    --- @param config BWConfig
+    --- @return BWThemeDark
     dark = function(palette, config)
         local main = {
             bg = palette.bg_300,
@@ -13,7 +13,7 @@ local themes = {
             main.bg = palette.none
         end
 
-        --- @class ThemeDark
+        --- @class BWThemeDark
         local theme = {
             bg = main.bg,
             fg = main.fg,
@@ -422,9 +422,9 @@ local themes = {
 
         return theme
     end,
-    --- @param palette PaletteLight
-    --- @param config Config
-    --- @return ThemeLight
+    --- @param palette BWPaletteLight
+    --- @param config BWConfig
+    --- @return BWThemeLight
     light = function(palette, config)
         local main = {
             bg = palette.bg_100,
@@ -435,7 +435,7 @@ local themes = {
             main.bg = 'NONE'
         end
 
-        --- @class ThemeLight
+        --- @class BWThemeLight
         local theme = {
             bg = main.bg,
             fg = main.fg,
